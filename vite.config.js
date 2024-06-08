@@ -15,12 +15,21 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()]
     }),
     Components({
-      resolvers: [ElementPlusResolver()]
+      // 定制element-plus主题第2步
+      resolvers: [ElementPlusResolver({ importStyle: 'sass' })]
     })
   ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
+    }
+  },
+  // 定制element-plus主题第3步
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `@use "@/styles/element/index.scss" as *; @use "@/styles/var.scss" as *;`
+      }
     }
   }
 })

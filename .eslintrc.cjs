@@ -2,6 +2,10 @@
 require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
+  //不让eslint提示这些错误
+  globals: {
+    // $: 'readonly'
+  },
   root: true,
   extends: [
     'plugin:vue/vue3-essential',
