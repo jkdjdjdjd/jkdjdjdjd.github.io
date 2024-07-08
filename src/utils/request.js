@@ -1,8 +1,7 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-import { useRouter } from 'vue-router'
+import router from '@/router'
 import { useUserStore } from '@/stores'
-const router = useRouter()
 
 // 创建axios实例
 const instance = axios.create({
@@ -43,6 +42,7 @@ instance.interceptors.response.use(
   function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么
+
     ElMessage.error(error.response.data.message)
     if (error.response?.status === 401) {
       // 未登录

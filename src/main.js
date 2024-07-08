@@ -1,4 +1,6 @@
 import { createApp } from 'vue'
+import { plugin } from '@/directives'
+
 import pinia from '@/stores/index.js'
 import 'element-plus/dist/index.css'
 import App from './App.vue'
@@ -11,7 +13,9 @@ const app = createApp(App)
 app.config.errorHandler = (err) => {
   console.error(err)
 }
+
 app.use(pinia)
 app.use(router)
+app.use(plugin)
 
 app.mount('#app')
