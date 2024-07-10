@@ -4,6 +4,7 @@ import { useScroll } from '@vueuse/core'
 import { useCategoryStore } from '@/stores'
 
 const categoryStore = useCategoryStore()
+// console.log('🚀 ~ categoryStore:', categoryStore.categoryList)
 
 const { y } = useScroll(window)
 </script>
@@ -18,7 +19,10 @@ const { y } = useScroll(window)
           class="home"
           v-for="item in categoryStore.categoryList"
           :key="item.id">
-          <RouterLink to="/">首页</RouterLink>
+          <!-- 注意这里的模版字符串用法，在双引号里面写 -->
+          <RouterLink :to="`/rabbit/category/${item.id}`">{{
+            item.name
+          }}</RouterLink>
         </li>
       </ul>
 
@@ -106,11 +110,10 @@ const { y } = useScroll(window)
         border-bottom: 1px solid $xtxColor;
       }
     }
-
-    .active {
-      color: $xtxColor;
-      border-bottom: 1px solid $xtxColor;
-    }
   }
+}
+a.router-link-active {
+  color: $xtxColor;
+  border-bottom: 1px solid $xtxColor;
 }
 </style>

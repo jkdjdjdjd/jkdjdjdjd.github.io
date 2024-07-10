@@ -14,12 +14,21 @@ const router = createRouter({
           component: () => import('@/views/home/index.vue')
         },
         {
-          path: 'rabbit/category',
+          //末尾的 ? 表示这个参数是可选的。也就是说，路径 rabbit/category 和 rabbit/category/123 都是有效的。
+          path: 'rabbit/category/:id?',
           component: () => import('@/views/category/index.vue')
+        },
+        {
+          path: 'rabbit/category/sub/:id?',
+          component: () => import('@/views/subCategory/index.vue')
         }
       ]
     }
-  ]
+  ],
+  //定制路由滚动行为
+  scrollBehavior() {
+    return { top: 0 }
+  }
 })
 
 export default router

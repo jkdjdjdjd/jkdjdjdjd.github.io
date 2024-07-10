@@ -15,7 +15,11 @@ categoryStore.getCategoryList()
           <RouterLink to="/">首页</RouterLink>
         </li>
         <li v-for="item in categoryStore.categoryList" :key="item.id">
-          <RouterLink to="/">{{ item.name }}</RouterLink>
+          <RouterLink
+            active-class="active"
+            :to="`/rabbit/category/${item.id}`"
+            >{{ item.name }}</RouterLink
+          >
         </li>
       </ul>
       <div class="search">
