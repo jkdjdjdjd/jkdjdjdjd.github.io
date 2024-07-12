@@ -15,7 +15,7 @@ getNewList()
   <!-- 默认插槽内容 -->
   <ul class="goods-list">
     <li v-for="item in newList" :key="item.id">
-      <RouterLink to="/">
+      <RouterLink :to="`/rabbit/detail/${item.id}`">
         <img :src="item.picture" alt="" />
         <p class="name">{{ item.name }}</p>
         <p class="price">&yen;{{ item.price }}</p>

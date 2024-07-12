@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-
 import { ref } from 'vue'
 
 export const useUserStore = defineStore(
@@ -12,10 +11,16 @@ export const useUserStore = defineStore(
       user.value = data
       token.value = data.token
     }
+    // 清空用户信息
+    const clearUser = () => {
+      user.value = []
+      token.value = ''
+    }
     return {
       user,
       token,
-      setUser
+      setUser,
+      clearUser
     }
   },
   {
