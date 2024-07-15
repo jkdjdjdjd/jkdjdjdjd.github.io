@@ -1,0 +1,73 @@
+.loading_box {
+    position: absolute;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
+    top: 0;
+     left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    background-color: rgba(0, 0,0 , 0.8);
+  }
+  .spinner {
+      margin: 0 auto;
+      width: 40px;
+      height: 40px;
+      position: relative;
+      top: 45%;
+      transform: translateY(-50%);
+}
+
+  .cube1, .cube2 {
+    background-color: #27bb9a;
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
+    animation: sk-cubemove 1.8s infinite ease-in-out;
+  }
+
+.cube2 {
+-webkit-animation-delay: -0.9s;
+animation-delay: -0.9s;
+}
+.loading_text {
+position: relative;
+top: 45%;
+transform: translateY(-50%);
+text-align: center;
+margin: 20px 0 0 30px; /* 合并 margin 属性，减少计算 */
+font-size: 16px; /* 增加字体大小 */
+color: #27bb9a; /* 设置文字颜色 */
+font-weight: bold; /* 设置文字加粗 */
+text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* 添加文字阴影 */
+}
+
+@-webkit-keyframes sk-cubemove {
+25% { -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5) }
+50% { -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg) }
+75% { -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5) }
+100% { -webkit-transform: rotate(-360deg) }
+}
+
+@keyframes sk-cubemove {
+25% { 
+  transform: translateX(42px) rotate(-90deg) scale(0.5);
+  -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
+} 50% { 
+  transform: translateX(42px) translateY(42px) rotate(-179deg);
+  -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
+} 50.1% { 
+  transform: translateX(42px) translateY(42px) rotate(-180deg);
+  -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
+} 75% { 
+  transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+  -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
+} 100% { 
+  transform: rotate(-360deg);
+  -webkit-transform: rotate(-360deg);
+}
+}

@@ -17,5 +17,71 @@ export const plugin = {
         })
       }
     })
+    //创建全局自定义指令v-myLoading(SVG,gif实现)
+    app.directive('myLoading', {
+      mounted(el, binding) {
+        if (binding.value) {
+          el.classList.add('loading')
+          disableScroll()
+        } else {
+          el.classList.remove('loading')
+          enableScroll()
+        }
+      },
+      updated(el, binding) {
+        if (binding.value) {
+          el.classList.add('loading')
+          disableScroll()
+        } else {
+          el.classList.remove('loading')
+          enableScroll()
+        }
+      }
+    })
+    //创建全局自定义指令v-personLoading(HTLM,CSS实现)
+    app.directive('personLoading', {
+      mounted(el, binding) {
+        const loadingBox = createLoadingBox()
+        handleBinding(el, binding, loadingBox)
+      },
+      updated(el, binding) {
+        const loadingBox = el.querySelector('.loading_box')
+        handleBinding(el, binding, loadingBox)
+      }
+    })
+
+    function createLoadingBox() {
+      const loadingBox = document.createElement('div')
+      loadingBox.classList.add('loading_box')
+      loadingBox.innerHTML = ` 
+        <div class="spinner">
+          <div class="cube1"></div>
+          <div class="cube2"></div>
+        </div> 
+        <p class="loading_text">加载中...</p>`
+      return loadingBox
+    }
+
+    function handleBinding(el, binding, loadingBox) {
+      if (binding.value) {
+        if (!el.contains(loadingBox)) {
+          el.appendChild(loadingBox)
+        }
+      } else {
+        if (el.contains(loadingBox)) {
+          el.removeChild(loadingBox)
+        }
+      }
+    }
+
+    // 禁用滚动
+    function disableScroll() {
+      document.body.style.overflow = 'hidden'
+    }
+
+    // 启用滚动
+    function enableScroll() {
+      document.body.style.overflow = ''
+    }
   }
 }

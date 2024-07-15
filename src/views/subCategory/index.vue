@@ -5,6 +5,7 @@ import GoodsItem from '@/views/home/components/GoodsItem.vue'
 import { getCategoryGoodsService, getFinalGoodsService } from '@/apis/category'
 const route = useRoute()
 const subCategory = ref([])
+const isLoading = ref(true)
 // 获取子分类商品
 const getSubCategory = async () => {
   const res = await getCategoryGoodsService(route.params.id)
@@ -22,6 +23,7 @@ const finalData = ref([])
 const getFinalCategory = async () => {
   const res = await getFinalGoodsService(conditionData.value)
   finalData.value = res
+  isLoading.value = false
 }
 //更改排序方式逻辑
 const handleTab = async (pane) => {
@@ -59,36 +61,38 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="container">
-    <!-- 面包屑 -->
-    <div class="bread-container">
-      <el-breadcrumb separator=">">
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        <el-breadcrumb-item
-          :to="{ path: `/rabbit/category/${subCategory.parentId}` }"
-          >{{ subCategory.parentName }}
-        </el-breadcrumb-item>
-        <el-breadcrumb-item>{{ subCategory.name }}</el-breadcrumb-item>
-      </el-breadcrumb>
-    </div>
-    <div class="sub-container">
-      <el-tabs
-        @tab-click="handleTab"
-        type="card"
-        v-model="conditionData.sortField">
-        <el-tab-pane label="最新商品" name="publishTime"></el-tab-pane>
-        <el-tab-pane label="最高人气" name="orderNum"></el-tab-pane>
-        <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>
-      </el-tabs>
-      <div
-        class="body"
-        :infinite-scroll-disabled="disabledInfinite"
-        v-infinite-scroll="infiniteHandler">
-        <!-- 商品列表-->
-        <GoodsItem
-          v-for="item in finalData.items"
-          :key="item.id"
-          :good="item"></GoodsItem>
+  <div>
+    <div class="container">
+      <!-- 面包屑 -->
+      <div class="bread-container" v-myLoading="isLoading">
+        <el-breadcrumb separator=">">
+          <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
+          <el-breadcrumb-item
+            :to="{ path: `/rabbit/category/${subCategory.parentId}` }"
+            >{{ subCategory.parentName }}
+          </el-breadcrumb-item>
+          <el-breadcrumb-item>{{ subCategory.name }}</el-breadcrumb-item>
+        </el-breadcrumb>
+      </div>
+      <div class="sub-container">
+        <el-tabs
+          @tab-click="handleTab"
+          type="card"
+          v-model="conditionData.sortField">
+          <el-tab-pane label="最新商品" name="publishTime"></el-tab-pane>
+          <el-tab-pane label="最高人气" name="orderNum"></el-tab-pane>
+          <el-tab-pane label="评论最多" name="evaluateNum"></el-tab-pane>
+        </el-tabs>
+        <div
+          class="body"
+          :infinite-scroll-disabled="disabledInfinite"
+          v-infinite-scroll="infiniteHandler">
+          <!-- 商品列表-->
+          <GoodsItem
+            v-for="item in finalData.items"
+            :key="item.id"
+            :good="item"></GoodsItem>
+        </div>
       </div>
     </div>
   </div>

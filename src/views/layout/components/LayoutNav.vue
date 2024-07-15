@@ -13,7 +13,8 @@ const logout = () => {
   <nav class="app-topnav">
     <div class="container">
       <ul>
-        <template v-if="userStore.user">
+        <!-- 这是对象不是数组，不用length判断 -->
+        <template v-if="userStore.user.token">
           <li>
             <a href="javascript:;"
               ><i class="iconfont icon-user"></i
