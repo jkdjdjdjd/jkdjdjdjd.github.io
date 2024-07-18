@@ -12,8 +12,9 @@ const large = ref(null) // 放大镜大图
 const isShowLarge = ref(false) // 是否显示放大镜大图
 // 图片列表
 
-const activeIndex = ref(0) // 当前激活的图片索引
-const handleClick = (index) => {
+const activeIndex = ref(0) // 当前激活的图片索引,传递给详情页，加入购物车时可以传递对应图片
+
+const handleClick = index => {
   activeIndex.value = index
 }
 

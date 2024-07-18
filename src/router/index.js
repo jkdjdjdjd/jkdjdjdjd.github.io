@@ -25,6 +25,10 @@ const router = createRouter({
         {
           path: '/rabbit/detail/:id?',
           component: () => import('@/views/detail/index.vue')
+        },
+        {
+          path: '/rabbit/cart',
+          component: () => import('@/views/cartList/index.vue')
         }
       ]
     }

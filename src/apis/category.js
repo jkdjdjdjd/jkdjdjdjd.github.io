@@ -1,7 +1,7 @@
 import request from '../utils/request'
 
 // 获取二级分类列表数据
-export const getCategoryDataService = (id) =>
+export const getCategoryDataService = id =>
   request.get('/category', {
     params: {
       //id为query参数类型
@@ -10,7 +10,7 @@ export const getCategoryDataService = (id) =>
   })
 
 //获取二级分类对应商品数据
-export const getCategoryGoodsService = (id) =>
+export const getCategoryGoodsService = id =>
   request.get('/category/sub/filter', {
     params: {
       id
@@ -26,5 +26,5 @@ data: {
   sortField: 'publishTime' 商品排序方式,
 }
 */
-export const getFinalGoodsService = (data) =>
+export const getFinalGoodsService = data =>
   request.post('/category/goods/temporary', data)

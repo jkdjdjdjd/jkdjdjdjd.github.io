@@ -20,7 +20,7 @@ onMounted(() => {
         <RouterLink class="cover" to="/">
           <img :src="cate.picture" />
           <strong class="label">
-            <span>{{ cate.name }}馆</span>
+            <span>{{ cate.name }}</span>
             <span>{{ cate.saleInfo }}</span>
           </strong>
         </RouterLink>
@@ -86,7 +86,9 @@ onMounted(() => {
 
         span {
           text-align: center;
-
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
           &:first-child {
             width: 76px;
             background: rgba(0, 0, 0, 0.9);

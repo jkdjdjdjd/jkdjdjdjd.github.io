@@ -26,7 +26,7 @@ const getFinalCategory = async () => {
   isLoading.value = false
 }
 //更改排序方式逻辑
-const handleTab = async (pane) => {
+const handleTab = async pane => {
   //更改请求参数后重新发送请求
   conditionData.value.page = 1
   if (pane.props.name === 'orderNum') {

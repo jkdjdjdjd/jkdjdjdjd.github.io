@@ -16,8 +16,8 @@ export const useCategory = () => {
   onMounted(() => {
     getCategory()
   })
-  //路由变化后，请求数据
-  onBeforeRouteUpdate((to) => {
+  //路由变化后，请求数据,to包含路由的详细信息
+  onBeforeRouteUpdate(to => {
     //轮播图都一样，不需要请求
     getCategory(to.params.id)
   })

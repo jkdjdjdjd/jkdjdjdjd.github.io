@@ -5,3 +5,4 @@ const pinia = createPinia().use(piniaPluginPersistedstate)
 export default pinia
 export * from './modules/user'
 export * from './modules/category'
+export * from './modules/cart'

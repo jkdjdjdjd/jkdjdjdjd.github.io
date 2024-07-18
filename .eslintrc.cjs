@@ -16,6 +16,7 @@ module.exports = {
     ecmaVersion: 'latest'
   },
   rules: {
+    'arrow-parens': ['error', 'as-needed'], // 只在需要时添加括号
     'prettier/prettier': [
       'warn',
       {

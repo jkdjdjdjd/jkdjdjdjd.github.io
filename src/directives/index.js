@@ -1,6 +1,6 @@
 import { useIntersectionObserver } from '@vueuse/core'
 //vue的插件写法
-export const plugin = {
+export const directivePlugin = {
   install(app) {
     //创建全局图片懒加载指令v-img-lazy
     app.directive('img-lazy', {
