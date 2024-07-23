@@ -27,7 +27,7 @@ const rules = ref({
   agree: [
     {
       validator: (rule, value, callback) => {
-        console.log(value)
+        // console.log(value)
         if (value) {
           callback()
         } else {

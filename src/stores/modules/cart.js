@@ -11,6 +11,11 @@ export const useCartStore = defineStore(
   () => {
     const userStore = useUserStore()
     const cartList = ref([])
+    // 获取购物车列表
+    const updateCartList = async () => {
+      const res = await getCartListService()
+      cartList.value = res
+    }
     //添加
     const addCart = async data => {
       if (userStore.token) {
@@ -87,7 +92,8 @@ export const useCartStore = defineStore(
       isAll,
       selectCount,
       selectPrice,
-      clearCart
+      clearCart,
+      updateCartList
     }
   },
   {
