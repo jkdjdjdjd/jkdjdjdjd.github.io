@@ -1,16 +1,58 @@
 <script setup>
-const payInfo = {}
+import { getOrderInfoService } from '@/apis/pay'
+import { onMounted, ref, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { useCountDown } from '@/composables/useCountDown'
+import { ElMessageBox } from 'element-plus'
+const { formatTime, start, time } = useCountDown()
+const route = useRoute()
+const router = useRouter()
+const isLoading = ref(true)
+// 支付地址
+// 支付地址
+const baseURL = 'http://pcapi-xiaotuxian-front-devtest.itheima.net/'
+const backURL = 'http://127.0.0.1:5173/rabbit/paycallback'
+const redirectUrl = encodeURIComponent(backURL)
+const payUrl = `${baseURL}pay/aliPay?orderId=${route.params.id}&redirect=${redirectUrl}`
+
+const payInfo = ref({})
+const getOrderInfo = async () => {
+  const res = await getOrderInfoService(route.params.id)
+  // console.log('🚀 ~ getOrderInfo ~ res:', res)
+  payInfo.value = res
+  isLoading.value = false
+  start(payInfo.value.countdown)
+}
+watch(time, newVal => {
+  // console.log(newVal)
+  if (newVal <= 0) {
+    ElMessageBox.alert('订单已超时，请重新下单', '超时提示', {
+      confirmButtonText: '确定',
+      callback: (value, action) => {
+        console.log(value, action)
+        // 跳转到首页
+        router.replace('/')
+      }
+    })
+  }
+})
+onMounted(() => {
+  getOrderInfo()
+})
 </script>
 
 <template>
-  <div class="xtx-pay-page">
+  <div class="xtx-pay-page" v-myLoading="isLoading">
     <div class="container">
       <!-- 付款信息 -->
       <div class="pay-info">
         <span class="icon iconfont icon-queren2"></span>
         <div class="tip">
           <p>订单提交成功！请尽快完成支付。</p>
-          <p>支付还剩 <span>24分30秒</span>, 超时后将取消订单</p>
+          <p>
+            支付还剩 <span>{{ formatTime }}</span
+            >, 超时后将取消订单
+          </p>
         </div>
         <div class="amount">
           <span>应付总额：</span>

@@ -1,5 +1,5 @@
 // import Address from '@/components/XtxAddress/index.vue'
-import Sku from '@/components/XtxSku/index.vue'
+import Sku from '@/components/PersonSku/index.vue'
 import PreviewImg from '@/components/XtxPreviewImg/index.vue'
 
 export const componentPlugin = {

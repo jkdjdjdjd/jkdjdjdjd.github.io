@@ -47,6 +47,7 @@ const infiniteHandler = async () => {
   const newFinalData = ref([])
   conditionData.value.page += 1
   const { items } = await getFinalGoodsService(conditionData.value)
+  console.log(items)
   newFinalData.value = items
   finalData.value.items.push(...newFinalData.value)
   if (items.length <= 0) {

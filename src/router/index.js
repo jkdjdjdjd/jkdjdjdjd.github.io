@@ -23,20 +23,39 @@ const router = createRouter({
           component: () => import('@/views/subCategory/index.vue')
         },
         {
-          path: '/rabbit/detail/:id?',
+          path: 'rabbit/detail/:id?',
           component: () => import('@/views/detail/index.vue')
         },
         {
-          path: '/rabbit/cart',
+          path: 'rabbit/cart',
           component: () => import('@/views/cartList/index.vue')
         },
         {
-          path: '/rabbit/checkout',
+          path: 'rabbit/checkout',
           component: () => import('@/views/checkout/index.vue')
         },
         {
-          path: '/rabbit/pay/:id',
+          path: 'rabbit/pay/:id',
           component: () => import('@/views/pay/index.vue')
+        },
+        {
+          path: 'rabbit/paycallback',
+          component: () => import('@/views/pay/payBack.vue')
+        },
+        {
+          path: 'rabbit/person',
+          redirect: '/rabbit/person/userinfo',
+          component: () => import('@/views/person/index.vue'),
+          children: [
+            {
+              path: 'userinfo',
+              component: () => import('@/views/person/components/userInfo.vue')
+            },
+            {
+              path: 'userOrder',
+              component: () => import('@/views/person/components/userOrder.vue')
+            }
+          ]
         }
       ]
     }

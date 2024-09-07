@@ -19,6 +19,7 @@ const getDetail = async () => {
 }
 const getSku = sku => {
   skuObj.value = sku
+  console.log('🚀 ~ getSku ~ sku:', sku)
 }
 const handleAddCart = () => {
   if (skuObj.value.skuId) {
@@ -117,7 +118,7 @@ onMounted(() => {
                 </dl>
               </div>
               <!-- sku组件 -->
-              <XtxSku :goods="detail" @change="getSku"></XtxSku>
+              <XtxSku :goods="detail" @getSkuFn="getSku"></XtxSku>
               <!-- 数据组件 -->
               <el-input-number v-model="count" :min="1" />
               <!-- 按钮组件 -->
